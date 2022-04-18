@@ -6,6 +6,7 @@ const acceptedTemplates = ["p5js", "js", "threejs", "regl"];
 export default (data, opts = {}) => {
   let type = "js";
   let version;
+  console.log(data)
   if (data.project.scriptJSON && data.project.scriptJSON.type) {
     type = data.project.scriptJSON.type;
   }
@@ -25,18 +26,12 @@ export default (data, opts = {}) => {
     }
   }
 
-  const projectNum = parseInt(data.project.id, 10);
   const tokenId = String(data.token.id);
   const tokenData =
-    projectNum <= 2
-      ? {
-          hashes: [data.token.hash],
-          tokenId,
-        }
-      : {
-          hash: data.token.hash,
-          tokenId,
-        };
+    {
+      hash: data.token.hash,
+      tokenId,
+    };
 
   const base = templates[type];
   version = resolveVersion(type, version);
@@ -48,6 +43,7 @@ export default (data, opts = {}) => {
   let vendor;
   if (vendorUrl) vendor = `<script src="${vendorUrl}"></script>`;
 
+
   const prelude = getPrelude(opts);
   const doc = maxstache(base, {
     version,
@@ -56,6 +52,8 @@ export default (data, opts = {}) => {
     tokenData: `<script>let tokenData = ${JSON.stringify(tokenData)};</script>`,
     script: `<script>${data.project.script}</script>`,
   });
+
+  console.log(doc)
   return doc;
 };
 

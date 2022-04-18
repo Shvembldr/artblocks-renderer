@@ -3,12 +3,12 @@
   import Progress from "./Progress.svelte";
   import { isFrameSequenceSupported } from "./recording";
 
-  let id = "9000139";
-  let fps = 30;
+  let id = "1000000";
+  let fps = 60;
   let fpsPresets = [24, 25, 30, 50, 60];
-  let duration = 4;
-  let width = 512;
-  let height = 512;
+  let duration = 10;
+  let width = 750;
+  let height = 1000;
   let format = "gif";
   let dithering = false;
 
@@ -34,7 +34,7 @@
 
 <main>
   <div class="info">
-    <h1>ArtBlocks Recorder</h1>
+    <h1>ArtBlocks Recorder (TBOA edition)</h1>
     <p>
       Enter your configuration and click the <strong>Render</strong> button to export
       the high quality media.

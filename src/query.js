@@ -5,8 +5,7 @@ const PROJECT_EXPLORER =
   "https://api.thegraph.com/subgraphs/name/artblocks/art-blocks";
 
 const contracts = [
-  "0x059edd72cd353df5106d2b9cc5ab83a52287ac3a",
-  "0xa7d8d9ef8d8ce8992df33d8b8cf4aebabd5bd270",
+  "0x62e37f664b5945629b6549a87f8e10ed0b6d923b"
 ];
 
 const contract_in = JSON.stringify(contracts);
@@ -91,7 +90,7 @@ async function fetchProject(id) {
   const { projects } = await query(
     PROJECT_EXPLORER,
     `{
-  projects(where: { projectId: "${id}" }) {
+  projects(where: { projectId: "${id}", contract_in: ${contract_in} }) {
     projectId
     name
     scriptJSON
